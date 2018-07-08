@@ -1,4 +1,16 @@
+tags:
+  - name: travis
+    desc: environment variables needed from Travis
+  - name: dockerHub
+    desc: environment variables required when triggering docker hub
+
 envvars:
   - name: DOCKERHUB_TRIGGER_URL
     desc: URL to trigger the build to docker hub
+    tags:
+      - dockerHub
     example: https://registry.hub.docker.com/u/flemay/musketeers/trigger/trigger-token/
+  - name: TRAVIS_BRANCH
+    tags:
+      - travis
+    example: master

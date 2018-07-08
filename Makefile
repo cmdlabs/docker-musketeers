@@ -5,11 +5,11 @@ COMPOSE_RUN_ENVVARS = docker-compose run --rm envvars
 COMPOSE_RUN_MUSKETEERS = docker-compose run --rm musketeers
 DOCKER_RUN_MUSKETEERS = docker run --rm $(IMAGE_NAME)
 
-travis: envfile build test triggerDockerHubBuilds clean
-.PHONY: travis
-
 all: envfileExample build test clean
 .PHONY: all
+
+travis: envfile build test triggerDockerHubBuilds clean
+.PHONY: travis
 
 envfile:
 	$(DOCKER_RUN_ENVVARS) envfile --overwrite
@@ -57,10 +57,25 @@ clean:
 #######################
 
 triggerDockerHubBuilds:
-	$(COMPOSE_RUN_ENVVARS) ensure
+	$(COMPOSE_RUN_ENVVARS) ensure --tags travis
+	$(COMPOSE_RUN_ENVVARS) make _ensureForDockerHub
 	$(COMPOSE_RUN_MUSKETEERS) make _triggerDockerHubBuildForTagLatest
 .PHONY: triggerDockerHubBuilds
 
+_ensureForDockerHub:
+	if [ "$(TRAVIS_BRANCH)" = "master" ]; then \
+		ensure --tags dockerHub; \
+		echo " DO ensure"; \
+	else \
+		echo " SKIPPED ensure"; \
+	fi;
+.PHONY: _ensureForDockerHub
+
 _triggerDockerHubBuildForTagLatest:
-	@curl -H "Content-Type: application/json" --data '{"docker_tag": "latest"}' -X POST $(DOCKERHUB_TRIGGER_URL)
+	@if [ "$(TRAVIS_BRANCH)" = "master" ]; then \
+		curl -H "Content-Type: application/json" --data '{"docker_tag": "latest"}' -X POST $(DOCKERHUB_TRIGGER_URL); \
+		echo " TRIGGERED Docker build for branch master"; \
+	else \
+		echo " SKIPPED Docker build for branch master"; \
+	fi;
 .PHONY: _triggerDockerHubBuildForTagLatest
