@@ -57,22 +57,12 @@ clean:
 #######################
 
 triggerDockerHubBuilds:
-	$(COMPOSE_RUN_ENVVARS) ensure --tags travis
-	$(COMPOSE_RUN_ENVVARS) make _ensureForDockerHub
+	$(COMPOSE_RUN_ENVVARS) ensure
 	$(COMPOSE_RUN_MUSKETEERS) make _triggerDockerHubBuildForTagLatest
 .PHONY: triggerDockerHubBuilds
 
-_ensureForDockerHub:
-	if [ "$(TRAVIS_BRANCH)" = "master" ]; then \
-		ensure --tags dockerHub; \
-		echo " DO ensure"; \
-	else \
-		echo " SKIPPED ensure"; \
-	fi;
-.PHONY: _ensureForDockerHub
-
 _triggerDockerHubBuildForTagLatest:
-	@if [ "$(TRAVIS_BRANCH)" = "master" ]; then \
+	@set -e; if [ "$(TRAVIS_BRANCH)" = "master" ]; then \
 		curl -H "Content-Type: application/json" --data '{"docker_tag": "latest"}' -X POST $(DOCKERHUB_TRIGGER_URL); \
 		echo " TRIGGERED Docker build for branch master"; \
 	else \
