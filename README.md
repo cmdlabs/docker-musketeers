@@ -14,7 +14,7 @@ What would be a musketeers image without Docker and Compose? This image is based
 
 ### make
 
-The [3 Musketeers](https://github.com/flemay/three-musketeers) pattern suggests a `make target` to call a `make _target` using Compose. However, `make` would often be in big images like [Golang stretch](https://hub.docker.com/_/golang/) and not in small ones like [Alpine](https://hub.docker.com/_/alpine/). Not every project needs big images. There are solutions in the [3 Musketeers Guidelines](https://github.com/flemay/three-musketeers/blob/master/GUIDELINES.md) to what to do when the desired image does not have `make`.
+The [3 Musketeers](https://github.com/flemay/3musketeers) pattern suggests a `make target` to call a `make _target` using Compose. However, `make` would often be in big images like [Golang stretch](https://hub.docker.com/_/golang/) and not in small ones like [Alpine](https://hub.docker.com/_/alpine/). Not every project needs big images. There are solutions in the [3 Musketeers Guidelines](https://github.com/flemay/3musketeers/blob/master/GUIDELINES.md) to what to do when the desired image does not have `make`.
 
 ### zip
 
