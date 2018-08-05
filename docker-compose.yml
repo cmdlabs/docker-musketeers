@@ -8,7 +8,9 @@ services:
     working_dir: /opt/app
 
   musketeers:
-    image: flemay/musketeers
+    build: .
+    image: flemay/musketeers:latest
+    command: bash
     env_file: .env
     volumes:
       - .:/opt/app

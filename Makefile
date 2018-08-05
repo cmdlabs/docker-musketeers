@@ -1,15 +1,13 @@
-VERSION = latest
-IMAGE_NAME = flemay/musketeers:$(VERSION)
+COMPOSE_BUILD_MUSKETEERS = docker-compose build musketeers
+COMPOSE_RUN_MUSKETEERS = docker-compose run --rm musketeers
 DOCKER_RUN_ENVVARS = docker run --rm -v $(PWD):/opt/app -w /opt/app flemay/envvars
 COMPOSE_RUN_ENVVARS = docker-compose run --rm envvars
-COMPOSE_RUN_MUSKETEERS = docker-compose run --rm musketeers
-DOCKER_RUN_MUSKETEERS = docker run --rm $(IMAGE_NAME)
-
-travis: envfile build test triggerDockerHubBuilds clean
-.PHONY: travis
 
 all: envfileExample build test clean
 .PHONY: all
+
+travis: envfile build test triggerDockerHubBuilds clean
+.PHONY: travis
 
 envfile:
 	$(DOCKER_RUN_ENVVARS) envfile --overwrite
@@ -24,28 +22,24 @@ pull:
 .PHONY: pull
 
 build:
-	docker build --no-cache -t $(IMAGE_NAME) .
+	$(COMPOSE_BUILD_MUSKETEERS)
 .PHONY: build
 
 test:
 	$(COMPOSE_RUN_ENVVARS) validate
-	$(DOCKER_RUN_MUSKETEERS) make --version
-	$(DOCKER_RUN_MUSKETEERS) zip --version
-	$(DOCKER_RUN_MUSKETEERS) git --version
-	$(DOCKER_RUN_MUSKETEERS) curl --version
-	$(DOCKER_RUN_MUSKETEERS) which openssl
-	$(DOCKER_RUN_MUSKETEERS) docker --version
-	$(DOCKER_RUN_MUSKETEERS) docker-compose --version
-	$(DOCKER_RUN_MUSKETEERS) bash --version
+	$(COMPOSE_RUN_MUSKETEERS) make --version
+	$(COMPOSE_RUN_MUSKETEERS) zip --version
+	$(COMPOSE_RUN_MUSKETEERS) git --version
+	$(COMPOSE_RUN_MUSKETEERS) curl --version
+	$(COMPOSE_RUN_MUSKETEERS) which openssl
+	$(COMPOSE_RUN_MUSKETEERS) docker --version
+	$(COMPOSE_RUN_MUSKETEERS) docker-compose --version
+	$(COMPOSE_RUN_MUSKETEERS) bash --version
 .PHONY: test
 
 shell:
-	docker run --rm -it -v $(PWD):/opt/app $(IMAGE_NAME) sh -l
+	$(COMPOSE_RUN_MUSKETEERS)
 .PHONY: shell
-
-remove:
-	docker rmi -f $(IMAGE_NAME)
-.PHONY: remove
 
 clean:
 	docker-compose down --remove-orphans
