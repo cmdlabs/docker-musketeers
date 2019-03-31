@@ -18,6 +18,7 @@
 - git
 - openssl
 - bash
+- envsubst
 
 ## Usage
 
