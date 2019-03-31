@@ -1,6 +1,6 @@
 [![Build Status][linkBadgeTravisBuildStatus]][linkTravisMusketeers]
 [![Docker Build Status][linkBadgeDockerBuildStatus]][linkDockerHubMusketeers]
-[![Docker Size][linkBadgeDockerSize]][linkDockerHubMusketeers]
+[![Docker Size][linkBadgeDockerSize]][linkMicroBadgerMusketeers]
 [![Docker Downloads][linkBadgeDockerDownloads]][linkDockerHubMusketeers]
 [![License](https://img.shields.io/dub/l/vibe-d.svg)](LICENSE)
 
@@ -46,6 +46,7 @@ A cron task in Travis triggers a build every month making the image to be as fre
 [linkDockerHubMusketeers]: https://hub.docker.com/r/flemay/musketeers
 [linkTravisMusketeers]: https://travis-ci.org/flemay/3musketeers
 [link3Musketeers]: https://3musketeers.io
+[linkMicroBadgerMusketeers]: https://microbadger.com/images/flemay/musketeers
 
 [linkBadgeTravisBuildStatus]: https://travis-ci.org/flemay/docker-musketeers.svg?branch=master
 [linkBadgeDockerSize]: https://images.microbadger.com/badges/image/flemay/musketeers.svg
