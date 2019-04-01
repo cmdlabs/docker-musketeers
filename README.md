@@ -23,6 +23,15 @@
 ## Usage
 
 ```bash
+# pull image
+$ docker pull flemay/musketeers
+# run image
+$ docker run --rm flemay/musketeers docker --version
+```
+
+```bash
+# Development
+
 # generate .env file
 $ make envfile
 # build image
@@ -32,6 +41,10 @@ $ make test
 # go inside a musketeers container
 $ make shell
 ```
+
+## Example
+
+The GitLab pipeline to build and test the Docker image [flemay/cookiecutter][link3MusketeersExamples] uses `flemay/musketeers` image.
 
 ## Versioning
 
@@ -47,6 +60,7 @@ A cron task in Travis triggers a build every month making the image to be as fre
 [linkDockerHubMusketeers]: https://hub.docker.com/r/flemay/musketeers
 [linkTravisMusketeers]: https://travis-ci.org/flemay/3musketeers
 [link3Musketeers]: https://3musketeers.io
+[link3MusketeersExamples]: https://3musketeers.io/examples/
 [linkMicroBadgerMusketeers]: https://microbadger.com/images/flemay/musketeers
 
 [linkBadgeTravisBuildStatus]: https://travis-ci.org/flemay/docker-musketeers.svg?branch=master

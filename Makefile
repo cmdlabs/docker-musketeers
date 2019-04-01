@@ -1,4 +1,4 @@
-COMPOSE_BUILD_MUSKETEERS = docker-compose build musketeers
+COMPOSE_BUILD_MUSKETEERS = docker-compose build --no-cache musketeers
 COMPOSE_RUN_MUSKETEERS = docker-compose run --rm musketeers
 ENVFILE ?= .env.template
 
