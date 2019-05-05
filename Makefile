@@ -5,9 +5,9 @@ ENVFILE ?= .env.template
 all:
 	ENVFILE=.env.example $(MAKE) envfile build test clean
 
-travisPullRequest: envfile build test clean
+onPullRequest: envfile build test clean
 
-travisMasterChange: envfile build test dockerhubBuild clean
+onMasterChange: envfile build test dockerhubBuild clean
 
 envfile:
 	cp -f $(ENVFILE) .env
