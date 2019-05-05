@@ -1,9 +1,9 @@
 COMPOSE_BUILD_MUSKETEERS = docker-compose build --no-cache musketeers
 COMPOSE_RUN_MUSKETEERS = docker-compose run --rm musketeers
-ENVFILE ?= .env.template
+ENVFILE ?= env.template
 
 all:
-	ENVFILE=.env.example $(MAKE) envfile build test clean
+	ENVFILE=env.example $(MAKE) envfile build test clean
 
 onPullRequest: envfile build test clean
 
