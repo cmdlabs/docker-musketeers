@@ -45,17 +45,6 @@ $ make shell
 
 The GitLab pipeline to build and test the Docker image [flemay/cookiecutter][link3MusketeersExamples] uses `flemay/musketeers` image.
 
-## Versioning
-
-This image will always be built with the tag `latest` so tools will always be up to date. This may cause issues if any tool has a breaking change.
-
-## Automated build process
-
-In a nutshell, any change to master triggers a [Travis build][linkTravisCIProject] and if the tests passed it triggers a [Docker Hub build][linkDockerHubProjectBuild]. The automatic build on Docker Hub has been disabled ensuring the build process to go only through Travis.
-
-A cron task in Travis triggers a build every month making the image to be as fresh as possible automatically.
-
-
 [link3Musketeers]: https://3musketeers.io
 [link3MusketeersExamples]: https://3musketeers.io/examples/
 
