@@ -1,4 +1,4 @@
-COMPOSE_BUILD_MUSKETEERS = docker-compose build --no-cache musketeers
+COMPOSE_BUILD_MUSKETEERS = docker-compose build musketeers
 COMPOSE_RUN_MUSKETEERS = docker-compose run --rm musketeers
 ENVFILE ?= env.template
 
@@ -27,3 +27,9 @@ clean:
 
 dockerhubBuild:
 	$(COMPOSE_RUN_MUSKETEERS) ./scripts/dockerhub-build.sh
+
+gitTag:
+	-git tag -d $(TAG)
+	-git push origin :refs/tags/$(TAG)
+	git tag $(TAG)
+	git push origin $(TAG)
