@@ -9,15 +9,17 @@
 
 ## Tools
 
-- Docker: useful when doing Docker in Docker (DinD).
-- Compose
-- make
-- zip
-- curl
-- git
-- openssl
-- bash
-- envsubst
+  - Docker: useful when doing Docker in Docker (DinD).
+  - awscli: required for ECR logins
+  - Compose
+  - make
+  - zip
+  - curl
+  - git
+  - openssl
+  - openssh
+  - bash
+  - envsubst
 
 ## Usage
 
