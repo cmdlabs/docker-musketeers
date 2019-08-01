@@ -1,6 +1,7 @@
 COMPOSE_BUILD_MUSKETEERS = docker-compose build musketeers
 COMPOSE_RUN_MUSKETEERS = docker-compose run --rm musketeers
 ENVFILE ?= env.template
+TAG = 1.0.0
 
 all:
 	ENVFILE=env.example $(MAKE) envfile build test clean
